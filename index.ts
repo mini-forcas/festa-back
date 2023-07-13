@@ -1,11 +1,20 @@
 import express from "express";
-const app = express();
-const port = 3000;
+import socketio from 'socket.io';
+import { Server } from 'http'
 
-app.get("/", (req: express.Request, res: express.Response) => {
-  res.send("Hello World!");
+var app = express();
+var http = new Server(app);
+const socket = new socketio.Server(http);
+const PORT = process.env.PORT || 5000;
+
+socket.on('connection',function(socket){
+    console.log('connect');
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+socket.on('yyy', (data: { message: string }) => {
+  console.log(`type: ${typeof data}   data: ${data.message}`);
+});
+
+http.listen(PORT, function(){
+    console.log('server listening. Port:' + PORT);
 });
