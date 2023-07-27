@@ -13,8 +13,8 @@ const io = new Server(httpServer, {
 io.on("connection", (socket) => {
   console.log("connect");
 
-  socket.on("yyy", (reason) => {
-    console.log(`user disconnected. reason is ${reason}`);
+  socket.on("submitAnswer", (ans: String | Number) => {
+    console.log(`受け取った答え:${ans}`)
   });
 });
 

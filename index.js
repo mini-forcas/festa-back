@@ -10,8 +10,8 @@ var PORT = process.env.PORT || 5000;
 socket.on('connection', function (socket) {
     console.log('connect');
 });
-socket.on('yyy', function (data) {
-    console.log("type: ".concat(typeof data, "   data: ").concat(data.message));
+socket.on('submitAnswer', function (ans) {
+
 });
 http.listen(PORT, function () {
     console.log('server listening. Port:' + PORT);
