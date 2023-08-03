@@ -9,16 +9,19 @@ const io = new Server(httpServer, {
     origin: ["http://localhost:3000"],
   },
 });
-
+// io ... client
+// socket ... server
 io.on("connection", (socket) => {
   console.log("connect");
 
   socket.on("submitAnswer", (ans: String | Number) => {
-    console.log(`受け取った答え:${ans}`)
+    console.log(`受け取った答え:${ans}`);
   });
 
-  io.on("showAnswer", () =>  { answer : 4 })
-
+  socket.on("showAnswer", (ans: Object) => {
+    console.log(ans);
+    io.emit("receiveAnswer", () => ans);
+  });
 });
 
 const PORT = process.env.PORT || 5000;
