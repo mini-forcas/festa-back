@@ -16,6 +16,9 @@ io.on("connection", (socket) => {
   socket.on("submitAnswer", (ans: String | Number) => {
     console.log(`受け取った答え:${ans}`)
   });
+
+  io.on("showAnswer", () =>  { answer : 4 })
+
 });
 
 const PORT = process.env.PORT || 5000;
