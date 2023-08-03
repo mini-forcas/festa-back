@@ -20,7 +20,7 @@ io.on("connection", (socket) => {
 
   socket.on("showAnswer", (ans: Object) => {
     console.log(ans);
-    io.emit("receiveAnswer", () => ans);
+    io.emit("receiveAnswer", ans);
   });
 });
 
