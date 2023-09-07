@@ -18,8 +18,7 @@ io.on("connection", (socket) => {
     console.log(`受け取った答え:${ans}`);
   });
 
-  socket.on("showAnswer", (ans: Object) => {
-    console.log(ans);
+  socket.on("showAnswer", (ans: String | Number) => {
     io.emit("receiveAnswer", ans);
   });
 });
