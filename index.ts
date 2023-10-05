@@ -13,6 +13,8 @@ const io = new Server(httpServer, {
 // socket ... server
 io.on("connection", (socket) => {
   console.log("connect");
+  io.emit("tokenId", socket.id);
+  console.log(socket.id);
 
   socket.on("submitAnswer", (ans: String | Number) => {
     console.log(`受け取った答え:${ans}`);
@@ -20,6 +22,10 @@ io.on("connection", (socket) => {
 
   socket.on("showAnswer", (ans: String | Number) => {
     io.emit("receiveAnswer", ans);
+  });
+
+  socket.on("startQuiz", () => {
+    io.emit("showQuiz");
   });
 });
 
