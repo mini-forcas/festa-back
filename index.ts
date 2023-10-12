@@ -16,16 +16,16 @@ io.on("connection", (socket) => {
   io.emit("tokenId", socket.id);
   console.log(socket.id);
 
+  socket.on("startQuiz", () => {
+    io.emit("showQuiz");
+  });
+
   socket.on("submitAnswer", (ans: String | Number) => {
     console.log(`受け取った答え:${ans}`);
   });
 
   socket.on("showAnswer", (ans: String | Number) => {
     io.emit("receiveAnswer", ans);
-  });
-
-  socket.on("startQuiz", () => {
-    io.emit("showQuiz");
   });
 });
 
